@@ -1,9 +1,12 @@
 package com.epsoftandroid.demo.ui.viewmodel
 
+import androidx.databinding.ObservableField
 import com.epsoftandroid.demo.common.BaseViewModel
 import com.epsoftandroid.demo.notifiers.Notify
 
 class MainViewModel(): BaseViewModel() {
+
+    val isListEmpty = ObservableField(true)
 
     fun addNoteClick() {
         notifier.notify(Notify(ADD_NOTE_CLICK, ""))

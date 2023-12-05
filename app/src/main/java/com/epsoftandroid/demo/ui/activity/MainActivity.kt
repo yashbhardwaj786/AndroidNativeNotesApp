@@ -54,7 +54,7 @@ class MainActivity : BaseActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onNotificationReceived(data: Notify) {
-        when(data.identifier){
+        when (data.identifier) {
             MainViewModel.ADD_NOTE_CLICK -> {
                 ModuleMaster.navigateToAddNoteActivity(this, true)
             }
@@ -63,12 +63,13 @@ class MainActivity : BaseActivity() {
                 val itemId = data.arguments[0] as Long
                 ModuleMaster.navigateToAddNoteActivity(this, false, itemId)
             }
+
             MainViewModel.REMOVE_CLICK -> {
                 val itemId = data.arguments[0] as Long
-                if(itemId.toInt() != -1) {
+                if (itemId.toInt() != -1) {
                     lifecycleScope.launch(Dispatchers.IO) {
                         val removed = notesBox.remove(itemId)
-                        lifecycleScope.launch(Dispatchers.Main){
+                        lifecycleScope.launch(Dispatchers.Main) {
                             showToast(this@MainActivity, "Record removed successfully")
                         }
                     }
@@ -89,6 +90,11 @@ class MainActivity : BaseActivity() {
         }
         notesBox = ObjectBox.boxStore.boxFor()
         ObjectBox.notesLiveData.observe(this, Observer {
+            if (it.size > 0) {
+                mainViewModel.isListEmpty.set(false)
+            } else {
+                mainViewModel.isListEmpty.set(true)
+            }
             (binding.notesList.adapter as NotesItemAdapter).setNotes(it)
         })
     }
