@@ -1,6 +1,7 @@
 package com.epsoftandroid.demo.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.epsoftandroid.demo.databinding.ActivityNotesListBinding
 import com.epsoftandroid.demo.notifiers.Notify
 import com.epsoftandroid.demo.ui.adapter.NotesItemAdapter
 import com.epsoftandroid.demo.ui.viewmodel.MainViewModel
+import com.epsoftandroid.demo.utils.showAlertDialog
 import com.epsoftandroid.demo.utils.showToast
 import io.objectbox.Box
 import io.objectbox.kotlin.boxFor
@@ -66,16 +68,29 @@ class MainActivity : BaseActivity() {
 
             MainViewModel.REMOVE_CLICK -> {
                 val itemId = data.arguments[0] as Long
-                if (itemId.toInt() != -1) {
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        val removed = notesBox.remove(itemId)
-                        lifecycleScope.launch(Dispatchers.Main) {
-                            showToast(this@MainActivity, "Record removed successfully")
+
+                showAlertDialog(this, "", "Are you sure, you want to delete record?",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        if (which == DialogInterface.BUTTON_POSITIVE) {
+                            deleteItem(itemId)
+                        } else if (which == DialogInterface.BUTTON_NEGATIVE) {
+                            dialog.dismiss()
                         }
-                    }
-                }
+                    })
+
             }
 
+        }
+    }
+
+   private fun deleteItem(itemId: Long){
+        if (itemId.toInt() != -1) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val removed = notesBox.remove(itemId)
+                lifecycleScope.launch(Dispatchers.Main) {
+                    showToast(this@MainActivity, "Record removed successfully")
+                }
+            }
         }
     }
 
