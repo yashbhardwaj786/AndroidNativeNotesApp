@@ -116,8 +116,8 @@ class AddNoteActivity : BaseActivity() {
 
         saveBtn.setOnClickListener {
 
-            val title = titleEdit.text.toString()
-            val desc = description.text.toString()
+            val title = titleEdit.text.trim().toString()
+            val desc = description.text.trim().toString()
 
             if (title.isNotEmpty() && desc.isNotEmpty()) {
                 lifecycleScope.launch() {
@@ -176,14 +176,14 @@ class AddNoteActivity : BaseActivity() {
             if (!hasFocus) {
                 when (componentValue) {
                     TITLE_NAME -> {
-                        if (editText.text.toString().isEmpty()) {
+                        if (editText.text.trim().toString().isEmpty()) {
                             titleTextError.text = Constant.TITLE_REQUIRED
                             titleTextError.visibility = View.VISIBLE
                         }
                     }
 
                     DESCRIPTION_NAME -> {
-                        if (editText.text.toString().isEmpty()) {
+                        if (editText.text.trim().toString().isEmpty()) {
                             descTextError.text = Constant.DESCRIPTION_REQUIRED
                             descTextError.visibility = View.VISIBLE
                         }
@@ -202,7 +202,7 @@ class AddNoteActivity : BaseActivity() {
 
                 when (componentValue) {
                     TITLE_NAME -> {
-                        isTitleValid = if (cs.toString().isEmpty()) {
+                        isTitleValid = if (cs.trim().toString().isEmpty()) {
                             titleTextError.text = Constant.TITLE_REQUIRED
                             titleTextError.visibility = View.VISIBLE
                             false
@@ -215,7 +215,7 @@ class AddNoteActivity : BaseActivity() {
 
                     DESCRIPTION_NAME -> {
                         isDescriptionValid = when {
-                            cs.toString().isEmpty() -> {
+                            cs.trim().toString().isEmpty() -> {
                                 descTextError.text = Constant.DESCRIPTION_REQUIRED
                                 descTextError.visibility = View.VISIBLE
                                 false
