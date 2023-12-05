@@ -40,48 +40,11 @@ object ObjectBox {
             }
         }
 
-//        if (BuildConfig.DEBUG) {
-//            var syncAvailable = if (Sync.isAvailable()) "available" else "unavailable"
-//            Log.d(EpSoftDemo.TAG,
-//                    "Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()}, sync $syncAvailable)")
-//            Admin(boxStore).start(context.applicationContext)
-//        }
-
         val notesQuery = boxStore.boxFor(Note::class.java).query()
                 .orderDesc(Note_.date)
                 .build()
 
         notesLiveData = ObjectBoxLiveData(notesQuery)
-
-//        if (boxStore.boxFor(Note::class.java).isEmpty) {
-//            replaceWithDemoData()
-//        }
-    }
-
-    private fun replaceWithDemoData() {
-        val note1 = writeNote("", "")
-
-        boxStore.boxFor(Note::class.java).put(note1)
-    }
-
-    private fun writeNote(textTitle: String, textDescription: String): Note {
-        return Note(title = textTitle, description = textDescription,  date = Date())
-    }
-
-    fun copyAndGzipDatabaseFileTo(target: File, context: Context): Boolean {
-        if (BoxStore.isDatabaseOpen(context, null)) {
-            Log.e(EpSoftDemo.TAG, "Database file is still in use, can not copy.")
-            return false
-        }
-
-        val dbName = BoxStoreBuilder.DEFAULT_NAME
-        File(context.filesDir, "objectbox/$dbName/epsoft.mdb").inputStream().use { input ->
-            target.parentFile?.mkdirs()
-            GZIPOutputStream(target.outputStream()).use { output ->
-                input.copyTo(output, DEFAULT_BUFFER_SIZE)
-            }
-        }
-        return true
     }
 
 }
