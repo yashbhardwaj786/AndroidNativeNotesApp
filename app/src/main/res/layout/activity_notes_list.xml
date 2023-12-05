@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.epsoftandroid.demo.ui.viewmodel.MainViewModel" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        tools:context="NoteListActivity"
+        tools:ignore="RtlHardcoded">
+
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/app_bar_home"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonAddNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_20dp"
+            android:background="@drawable/new_button_style_16dp"
+            android:lineSpacingExtra="8sp"
+            android:padding="@dimen/margin_15dp"
+            android:text="@string/add_note"
+            android:textAllCaps="true"
+            android:onClick="@{()-> viewModel.addNoteClick()}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:lineHeight="@dimen/text_size_16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewNoteInstructions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/click_to_remove"
+            android:textSize="@dimen/text_size_16sp"
+            android:textColor="@color/dusk_blue_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notesList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:paddingBottom="@dimen/margin_40dp"
+            android:fitsSystemWindows="true"
+            android:overScrollMode="never"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddNote"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNoteInstructions"
+            tools:itemCount="5"
+            tools:listitem="@layout/layout_notes_item"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

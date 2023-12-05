@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="toolbar_color">@color/colorPrimaryDark</color>
+    <color name="colorPrimaryDark">#E2E2E2</color>
+    <color name="colorPrimary">#FAF9FA</color>
+    <color name="colorAccent">@color/white</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_2b">#25282B</color>
+    <color name="black">#000000</color>
+    <color name="nav_drawer_divider">#6D6B70</color>
+    <color name="blue">#4288F4</color>
+    <color name="grey_61">#5e5f61</color>
+    <color name="grey_cd">#E8E8E8</color>
+    <color name="dusk_blue_two">#254078</color>
+    <color name="dark_blue_grey">#0f1e3d</color>
+    <color name="black_5">#80000000</color>
+    <color name="address_submit_disable_bg">@color/nav_drawer_divider</color>
+
+</resources>

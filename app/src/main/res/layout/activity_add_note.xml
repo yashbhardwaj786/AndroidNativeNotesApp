@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.epsoftandroid.demo.ui.viewmodel.AddNotesViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.AddNoteActivity">
+
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/app_bar_home"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/enter_title"
+            android:textColor="@color/dusk_blue_two"
+            android:textSize="@dimen/text_size_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/titleEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:background="@color/transparent"
+            android:padding="@dimen/margin_5dp"
+            android:singleLine="true"
+            android:textColor="@color/dusk_blue_two"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+        <View
+            android:id="@+id/titleInputView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:background="@color/black_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleEdit" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTextError"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleInputView"
+            android:text="@{viewModel.errorTitleMessage}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/descTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/enter_description"
+            android:textColor="@color/dusk_blue_two"
+            android:textSize="@dimen/text_size_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextError" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:background="@color/transparent"
+            android:maxHeight="120dp"
+            android:maxLength="300"
+            android:padding="@dimen/margin_5dp"
+            android:textColor="@color/dusk_blue_two"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descTextView" />
+
+        <View
+            android:id="@+id/descInputView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:background="@color/black_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/descTextError"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descInputView"
+            android:text="@{viewModel.errorDescriptionMessage}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_40dp"
+            android:background="@drawable/new_button_style_16dp"
+            android:lineSpacingExtra="8sp"
+            android:padding="@dimen/margin_15dp"
+            android:text="@string/save"
+            android:maxLines="5"
+            android:maxLength="300"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descTextError"
+            app:lineHeight="@dimen/text_size_16sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
